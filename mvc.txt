@@ -1,0 +1,96 @@
+
+open github,  sign in, new for createing repository, install git bash, 
+now in ur system create a folder, copy and paste  the files u need to push to github, 
+clone, git add, git commit -m, git poushg,git push
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE [dbo].[Categories] (
+    [Id]   INT         NOT NULL,
+    [Name] VARCHAR (20) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+CREATE TABLE [dbo].[MenuItems] (
+    [Id]           INT         NOT NULL,
+    [Name]         VARCHAR (1) NULL,
+    [Price]        FLOAT (53)  NULL,
+    [Active]       BIT         NULL,
+    [DateOfLaunch] DATE        NULL,
+    [Category]     INT         NULL,
+    [FreeDelivery] BIT         NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([Category]) REFERENCES [dbo].[Categories] ([Id])
+);
+
+CREATE TABLE [dbo].[Carts] (
+    [Id] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([Id]) REFERENCES [dbo].[MenuItems] ([Id])
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BagController.cs
+
+ public ActionResult Index()
+        {
+            ViewBag.var1 = 10;
+            ViewData["var2"] = 20;
+            TempData["var3"] = 30;
+            return RedirectToAction("GETMDN");
+        }
+
+public ActionResult GetMDN()
+        {
+            int? v1 = Convert.ToInt32(ViewBag.var1);
+            int? v2 = Convert.ToInt32(ViewData["var2"]);
+            int? v3 = Convert.ToInt32(TempData["var3"]);
+            ViewBag.vr1 = v1;
+            ViewBag.vr2 = v2;
+            ViewBag.vr3 = v3;
+            return View();
+        }
+*******************************************************************
+GETMDN.cshtml
+_______________________________________________________________
+@{
+    ViewBag.Title = "GetMDN";
+}
+<h2>GetMDN</h2>
+<h1>This is Viewbag value : @ViewBag.vr1</h1>
+<h1>This is Temp data value: @ViewBag.vr3</h1>
+<h1>This is View data value: @ViewBag.vr2 </h1>
